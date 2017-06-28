@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'br.com.schifers'
+version = '0.1'
+description = 'concursos'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repository.primefaces.org' }
+}
+
+dependencies {
+	providedCompile 'javax:javaee-api:7.0'
+	
+	compile group: 'com.sun.jersey', name: 'jersey-server', version: '1.19.4'
+	compile group: 'com.sun.jersey', name: 'jersey-core', version: '1.19.4'
+	compile group: 'com.sun.jersey', name: 'jersey-servlet', version: '1.19.4'
+	compile group: 'com.sun.jersey', name: 'jersey-json', version: '1.19.4'
+	compile group: 'org.primefaces', name: 'primefaces', version: '6.1'
+	compile group: 'org.primefaces.themes', name: 'bootstrap', version: '1.0.10'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.10.Final'
+	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet', version: '3.4.1.Final'
+	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-config-prettyfaces', version: '3.4.1.Final'
+	
+	testCompile 'junit:junit:4.12'
+}
+
+configurations {
+    compile.exclude module: 'dom4j'
+} 
