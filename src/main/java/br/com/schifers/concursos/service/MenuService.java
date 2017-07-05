@@ -45,19 +45,20 @@ public class MenuService {
             menuItemDTO.setId(menuItem.getId());
             menuItemDTO.setName(menuItem.getName());
             menuItemDTO.setAction(menuItem.getAction());
-            menuItemDTO.setParentId(menuItem.getParent().getId());
+            menuItemDTO.setUrl(menuItem.getUrl());
+            menuItemDTO.setParentId(menuItem.getParent() == null ? null : menuItem.getParent().getId());
             menuItemDTO.setType(menuItem.getMenuType().getName());
             menuItemDTO.setOrder(menuMenuItem.getOrder());
             if (menuItem.getParent() == null) {
                 dto.getRoots().add(menuItemDTO);
-            }
-            if (dto.getMenuItemsMap().containsKey(menuItem.getId())) {
+            } else {
                 if (dto.getMenuItemsMap().containsKey(menuItem.getParent().getId())) {
                     dto.getMenuItemsMap().get(menuItem.getParent().getId()).add(menuItemDTO);
                 } else {
                     dto.getMenuItemsMap().put(menuItem.getParent().getId(), new ArrayList<MenuItemDTO>());
                 }
-            } else {
+            }
+            if (!dto.getMenuItemsMap().containsKey(menuItem.getId())) {
                 dto.getMenuItemsMap().put(menuItem.getId(), new ArrayList<MenuItemDTO>());
             }
         }

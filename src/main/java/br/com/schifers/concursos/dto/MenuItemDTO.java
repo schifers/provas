@@ -8,11 +8,19 @@ public class MenuItemDTO {
 
     private String action;
 
+    private String update;
+
+    private String url;
+
+    private String outcome;
+
     private String type;
 
     private Long parentId;
 
     private Integer order;
+
+    private Integer level;
 
     public Long getId() {
         return id;
@@ -60,6 +68,38 @@ public class MenuItemDTO {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
+    }
+
+    public String getOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(String outcome) {
+        this.outcome = outcome;
     }
 
 }

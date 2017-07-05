@@ -49,7 +49,7 @@ public class LoginBean {
         } catch (ServletException e) {
             context.addMessage(null, new FacesMessage("Falha ao sair"));
         }
-        return "/index";
+        return "/index?faces-redirect=true";
     }
 
     public void reset() {

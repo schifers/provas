@@ -3,8 +3,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <p:menubar>
-    	<p:menuitem value="Início" url="/user/dashboard" />
-    </p:menubar>
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://java.sun.com/jstl/core">
+    <p:menubar model="#{menuBean.model}"/>
 </ui:composition>

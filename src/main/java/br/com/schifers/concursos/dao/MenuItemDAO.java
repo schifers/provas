@@ -8,10 +8,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ListJoin;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 
 import br.com.schifers.concursos.entity.MenuItem;
+import br.com.schifers.concursos.entity.MenuMenuItem;
 
 @Stateless
 public class MenuItemDAO {
@@ -20,12 +24,16 @@ public class MenuItemDAO {
     private EntityManager manager;
 
     public List<MenuItem> findByMenu(Long id) {
+        Metamodel m = manager.getMetamodel();
+        EntityType<MenuItem> MenuItem_ = m.entity(MenuItem.class);
+
         CriteriaBuilder cb = manager.getCriteriaBuilder();
-        CriteriaQuery<MenuItem> criteriaQuery = cb.createQuery(MenuItem.class);
-        Root<MenuItem> from = criteriaQuery.from(MenuItem.class);
-        Predicate p = cb.equal(from.get("menu").get("id"), id);
-        criteriaQuery.where(p);
-        TypedQuery<MenuItem> tq = manager.createQuery(criteriaQuery);
+        CriteriaQuery<MenuItem> cq = cb.createQuery(MenuItem.class);
+        Root<MenuItem> from = cq.from(MenuItem.class);
+        ListJoin<MenuItem, MenuMenuItem> join = from.join(MenuItem_.getList("menuMenuItems", MenuMenuItem.class));
+        Predicate p = cb.equal(join.get("menu").get("id"), id);
+        cq.where(p);
+        TypedQuery<MenuItem> tq = manager.createQuery(cq);
         return tq.getResultList();
     }
 

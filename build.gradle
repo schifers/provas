@@ -28,7 +28,8 @@ dependencies {
 	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet', version: '3.4.1.Final'
 	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-config-prettyfaces', version: '3.4.1.Final'
 	
-	testCompile 'junit:junit:4.12'
+	compile group: 'junit', name: 'junit', version: '4.12'
+	compile 'org.mockito:mockito-core:2.8.47'
 }
 
 configurations {

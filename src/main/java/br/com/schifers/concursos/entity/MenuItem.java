@@ -1,10 +1,13 @@
 package br.com.schifers.concursos.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,13 +24,19 @@ public class MenuItem {
     @Column
     private String action;
 
+    @Column
+    private String url;
+
     @ManyToOne
     @JoinColumn(name = "menu_type_id", referencedColumnName = "id")
     private MenuType menuType;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "menu_item_id", referencedColumnName = "id")
     private MenuItem parent;
+
+    @OneToMany(mappedBy = "menuItem")
+    private List<MenuMenuItem> menuMenuItems;
 
     public Long getId() {
         return id;
@@ -67,6 +76,22 @@ public class MenuItem {
 
     public void setParent(MenuItem parent) {
         this.parent = parent;
+    }
+
+    public List<MenuMenuItem> getMenuMenuItems() {
+        return menuMenuItems;
+    }
+
+    public void setMenuMenuItems(List<MenuMenuItem> menuMenuItems) {
+        this.menuMenuItems = menuMenuItems;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }

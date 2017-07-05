@@ -11,6 +11,10 @@ import javax.persistence.Table;
 @Table(name = "menu_type", schema = "concursos")
 public class MenuType {
 
+    public static final String ITEM = "ITEM";
+
+    public static final String LIST = "LIST";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
