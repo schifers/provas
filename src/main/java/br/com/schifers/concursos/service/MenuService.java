@@ -1,21 +1,26 @@
 package br.com.schifers.concursos.service;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import br.com.schifers.concursos.dao.MenuDAO;
 import br.com.schifers.concursos.dao.MenuItemDAO;
 import br.com.schifers.concursos.dao.MenuMenuItemDAO;
+import br.com.schifers.concursos.dao.PersonDAO;
 import br.com.schifers.concursos.dto.MenuDTO;
 import br.com.schifers.concursos.dto.MenuItemDTO;
 import br.com.schifers.concursos.entity.Menu;
 import br.com.schifers.concursos.entity.MenuItem;
 import br.com.schifers.concursos.entity.MenuMenuItem;
+import br.com.schifers.concursos.entity.Person;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
@@ -30,14 +35,27 @@ public class MenuService {
     @Inject
     private MenuMenuItemDAO menuMenuItemDao;
 
+    @Inject
+    private PersonDAO personDao;
+
+    private Principal getPrincipal() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        return request.getUserPrincipal();
+    }
+
     public MenuDTO buildMenu(String name) {
+        Principal principal = getPrincipal();
+
         Menu menu = menuDao.findByName(name);
 
         MenuDTO dto = new MenuDTO();
 
         dto.setMenu(menu);
 
-        List<MenuItem> menuItems = menuItemDao.findByMenu(menu.getId());
+        Person person = personDao.findByUsername(principal == null ? Person.GUEST : principal.getName());
+
+        List<MenuItem> menuItems = menuItemDao.findByMenuByPerson(menu.getId(), person.getId());
 
         for (MenuItem menuItem : menuItems) {
             MenuMenuItem menuMenuItem = menuMenuItemDao.findByMenuByMenuItem(menu.getId(), menuItem.getId());

@@ -1,10 +1,13 @@
 package br.com.schifers.concursos.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,12 @@ public class Role {
 
     @Column
     private String rolename;
+
+    @OneToMany(mappedBy = "role")
+    private List<RoleMenuItem> roleMenuItems;
+
+    @OneToMany(mappedBy = "role")
+    private List<PersonRole> personRoles;
 
     public Long getId() {
         return id;
@@ -32,6 +41,22 @@ public class Role {
 
     public void setRolename(String rolename) {
         this.rolename = rolename;
+    }
+
+    public List<RoleMenuItem> getRoleMenuItems() {
+        return roleMenuItems;
+    }
+
+    public void setRoleMenuItems(List<RoleMenuItem> roleMenuItems) {
+        this.roleMenuItems = roleMenuItems;
+    }
+
+    public List<PersonRole> getPersonRoles() {
+        return personRoles;
+    }
+
+    public void setPersonRoles(List<PersonRole> personRoles) {
+        this.personRoles = personRoles;
     }
 
 }

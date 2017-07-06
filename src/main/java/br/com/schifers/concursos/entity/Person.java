@@ -11,6 +11,8 @@ import javax.persistence.Table;
 @Table(name = "person", schema = "concursos")
 public class Person {
 
+    public static final String GUEST = "guest";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

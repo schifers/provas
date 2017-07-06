@@ -23,9 +23,9 @@
 				<p:password id="password" value="#{loginBean.password}" disabled="#{loginBean.authenticated}"/>
 			</h:panelGrid>
 			<br />
-			<p:commandButton value="Entrar" action="#{loginBean.login}" rendered="#{!loginBean.authenticated}" update="messages"/>
+			<p:commandButton value="Entrar" action="#{loginBean.login}" rendered="#{!loginBean.authenticated}" update="@all"/>
 			<p:commandButton value="Limpar" action="#{loginBean.reset}" rendered="#{!loginBean.authenticated}" update="panel"/>
-			<p:commandButton value="Sair" action="#{loginBean.logout}" rendered="#{loginBean.authenticated}" update="panel"/>
+			<p:commandButton value="Sair" action="#{loginBean.logout}" rendered="#{loginBean.authenticated}" update="@all"/>
 			<p:button value="Criar conta" href="signup" />
 		</p:panel>
 	</h:form>

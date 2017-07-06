@@ -38,6 +38,9 @@ public class MenuItem {
     @OneToMany(mappedBy = "menuItem")
     private List<MenuMenuItem> menuMenuItems;
 
+    @OneToMany(mappedBy = "menuItem")
+    private List<RoleMenuItem> roleMenuItems;
+
     public Long getId() {
         return id;
     }
@@ -92,6 +95,14 @@ public class MenuItem {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<RoleMenuItem> getRoleMenuItems() {
+        return roleMenuItems;
+    }
+
+    public void setRoleMenuItems(List<RoleMenuItem> roleMenuItems) {
+        this.roleMenuItems = roleMenuItems;
     }
 
 }
