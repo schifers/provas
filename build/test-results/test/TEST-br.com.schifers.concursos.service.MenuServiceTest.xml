@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="br.com.schifers.concursos.service.MenuServiceTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2017-06-29T20:17:32" hostname="BSCHIFERW7" time="0.004">
+<testsuite name="br.com.schifers.provas.service.MenuServiceTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2017-06-29T20:17:32" hostname="BSCHIFERW7" time="0.004">
   <properties/>
-  <testcase name="initializationError" classname="br.com.schifers.concursos.service.MenuServiceTest" time="0.004">
+  <testcase name="initializationError" classname="br.com.schifers.provas.service.MenuServiceTest" time="0.004">
     <failure message="java.lang.Exception: Method testBuildMenu() should be public" type="java.lang.Exception">java.lang.Exception: Method testBuildMenu() should be public
 	at org.junit.runners.model.FrameworkMethod.validatePublicVoid(FrameworkMethod.java:96)
 	at org.junit.runners.model.FrameworkMethod.validatePublicVoidNoArg(FrameworkMethod.java:74)

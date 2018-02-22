@@ -8,11 +8,11 @@ targetCompatibility = 1.8
 
 group = 'br.com.schifers'
 version = '0.1'
-description = 'concursos'
+description = 'provas'
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repository.primefaces.org' }
+	maven { url 'http://repository.primefaces.org' }
 }
 
 dependencies {

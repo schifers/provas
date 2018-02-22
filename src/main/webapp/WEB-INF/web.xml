@@ -12,13 +12,13 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>bootstrap</param-value>
 	</context-param>
-	<display-name>concursos</display-name>
+	<display-name>provas</display-name>
 	<servlet>
 		<servlet-name>Jersey</servlet-name>
 		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>br.com.schifers.concursos</param-value>
+			<param-value>br.com.schifers.provas</param-value>
 		</init-param>
 
 		<!-- the following is only needed if you want to use the built-in support 
