@@ -18,7 +18,7 @@ public class MenuMenuItem {
     private Long id;
 
     @Column
-    private Integer order;
+    private Integer ordering;
 
     @ManyToOne
     @JoinColumn(name = "menu_id", referencedColumnName = "id")
@@ -36,12 +36,12 @@ public class MenuMenuItem {
         this.id = id;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrdering() {
+        return ordering;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrdering(Integer ordering) {
+        this.ordering = ordering;
     }
 
     public Menu getMenu() {

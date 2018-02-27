@@ -26,64 +26,64 @@ import br.com.schifers.provas.entity.Person;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class MenuService {
 
-    @Inject
-    private MenuDAO menuDao;
+	@Inject
+	private MenuDAO menuDao;
 
-    @Inject
-    private MenuItemDAO menuItemDao;
+	@Inject
+	private MenuItemDAO menuItemDao;
 
-    @Inject
-    private MenuMenuItemDAO menuMenuItemDao;
+	@Inject
+	private MenuMenuItemDAO menuMenuItemDao;
 
-    @Inject
-    private PersonDAO personDao;
+	@Inject
+	private PersonDAO personDao;
 
-    private Principal getPrincipal() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        return request.getUserPrincipal();
-    }
+	private Principal getPrincipal() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+		return request.getUserPrincipal();
+	}
 
-    public MenuDTO buildMenu(String name) {
-        Principal principal = getPrincipal();
+	public MenuDTO buildMenu(String name) {
+		Principal principal = getPrincipal();
 
-        Menu menu = menuDao.findByName(name);
+		Menu menu = menuDao.findByName(name);
 
-        MenuDTO dto = new MenuDTO();
+		MenuDTO dto = new MenuDTO();
 
-        dto.setMenu(menu);
+		dto.setMenu(menu);
 
-        Person person = personDao.findByUsername(principal == null ? Person.GUEST : principal.getName());
+		Person person = personDao.findByUsername(principal == null ? Person.GUEST : principal.getName());
 
-        List<MenuItem> menuItems = menuItemDao.findByMenuByPerson(menu.getId(), person.getId());
+		List<MenuItem> menuItems = menuItemDao.findByMenuByPerson(menu.getId(), person.getId());
 
-        for (MenuItem menuItem : menuItems) {
-            MenuMenuItem menuMenuItem = menuMenuItemDao.findByMenuByMenuItem(menu.getId(), menuItem.getId());
-            MenuItemDTO menuItemDTO = new MenuItemDTO();
-            menuItemDTO.setId(menuItem.getId());
-            menuItemDTO.setName(menuItem.getName());
-            menuItemDTO.setAction(menuItem.getAction());
-            menuItemDTO.setUrl(menuItem.getUrl());
-            menuItemDTO.setParentId(menuItem.getParent() == null ? null : menuItem.getParent().getId());
-            menuItemDTO.setType(menuItem.getMenuType().getName());
-            menuItemDTO.setOrder(menuMenuItem.getOrder());
-            if (menuItem.getParent() == null) {
-                dto.getRoots().add(menuItemDTO);
-            } else {
-                if (dto.getMenuItemsMap().containsKey(menuItem.getParent().getId())) {
-                    dto.getMenuItemsMap().get(menuItem.getParent().getId()).add(menuItemDTO);
-                } else {
-                    dto.getMenuItemsMap().put(menuItem.getParent().getId(), new ArrayList<MenuItemDTO>());
-                }
-            }
-            if (!dto.getMenuItemsMap().containsKey(menuItem.getId())) {
-                dto.getMenuItemsMap().put(menuItem.getId(), new ArrayList<MenuItemDTO>());
-            }
-        }
+		for (MenuItem menuItem : menuItems) {
+			MenuMenuItem menuMenuItem = menuMenuItemDao.findByMenuByMenuItem(menu.getId(), menuItem.getId());
+			MenuItemDTO menuItemDTO = new MenuItemDTO();
+			menuItemDTO.setId(menuItem.getId());
+			menuItemDTO.setName(menuItem.getName());
+			menuItemDTO.setAction(menuItem.getAction());
+			menuItemDTO.setUrl(menuItem.getUrl());
+			menuItemDTO.setParentId(menuItem.getParent() == null ? null : menuItem.getParent().getId());
+			menuItemDTO.setType(menuItem.getMenuType().getName());
+			menuItemDTO.setOrder(menuMenuItem.getOrdering());
+			if (menuItem.getParent() == null) {
+				dto.getRoots().add(menuItemDTO);
+			} else {
+				if (dto.getMenuItemsMap().containsKey(menuItem.getParent().getId())) {
+					dto.getMenuItemsMap().get(menuItem.getParent().getId()).add(menuItemDTO);
+				} else {
+					dto.getMenuItemsMap().put(menuItem.getParent().getId(), new ArrayList<MenuItemDTO>());
+				}
+			}
+			if (!dto.getMenuItemsMap().containsKey(menuItem.getId())) {
+				dto.getMenuItemsMap().put(menuItem.getId(), new ArrayList<MenuItemDTO>());
+			}
+		}
 
-        dto.orderRoots();
+		dto.orderRoots();
 
-        return dto;
-    }
+		return dto;
+	}
 
 }
