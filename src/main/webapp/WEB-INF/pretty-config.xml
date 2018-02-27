@@ -18,14 +18,14 @@
 		<view-id value="signup.xhtml" />
 	</url-mapping>
 
-	<url-mapping id="dashboard">
+	<url-mapping id="user-dashboard">
 		<pattern value="/user/dashboard" />
 		<view-id value="/user/dashboard.xhtml" />
 	</url-mapping>
 
-	<url-mapping id="menu">
-		<pattern value="/admin/menu" />
-		<view-id value="/admin/menu_read.xhtml" />
+	<url-mapping id="admin-dashboard">
+		<pattern value="/admin/dashboard" />
+		<view-id value="/admin/menu/menu_read.xhtml" />
 	</url-mapping>
 
 </pretty-config>
