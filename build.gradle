@@ -27,6 +27,8 @@ dependencies {
 	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-servlet', version: '3.4.1.Final'
 	compile group: 'org.ocpsoft.rewrite', name: 'rewrite-config-prettyfaces', version: '3.4.1.Final'
 	
+	compile group: 'com.github.adminfaces', name: 'admin-theme', version: '1.0.0-RC11'
+
 	compile group: 'junit', name: 'junit', version: '4.12'
 	compile 'org.mockito:mockito-core:2.8.47'
 }
