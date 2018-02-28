@@ -1,5 +1,7 @@
 package br.com.schifers.provas.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -13,21 +15,29 @@ import br.com.schifers.provas.entity.Person;
 @Stateless
 public class PersonDAO {
 
-    @Inject
-    private EntityManager manager;
+	@Inject
+	private EntityManager manager;
 
-    public Person insert(Person person) {
-        manager.persist(person);
-        return person;
-    }
+	public Person insert(Person person) {
+		manager.persist(person);
+		return person;
+	}
 
-    public Person findByUsername(String username) {
-        CriteriaBuilder cb = manager.getCriteriaBuilder();
-        CriteriaQuery<Person> cq = cb.createQuery(Person.class);
-        Root<Person> from = cq.from(Person.class);
-        cq.where(cb.equal(from.get("username"), username));
-        TypedQuery<Person> tq = manager.createQuery(cq);
-        return tq.getSingleResult();
-    }
+	public Person findByUsername(String username) {
+		CriteriaBuilder cb = manager.getCriteriaBuilder();
+		CriteriaQuery<Person> cq = cb.createQuery(Person.class);
+		Root<Person> from = cq.from(Person.class);
+		cq.where(cb.equal(from.get("username"), username));
+		TypedQuery<Person> tq = manager.createQuery(cq);
+		return tq.getSingleResult();
+	}
+
+	public List<Person> findAll() {
+		CriteriaBuilder cb = manager.getCriteriaBuilder();
+		CriteriaQuery<Person> cq = cb.createQuery(Person.class);
+		cq.from(Person.class);
+		TypedQuery<Person> tq = manager.createQuery(cq);
+		return tq.getResultList();
+	}
 
 }

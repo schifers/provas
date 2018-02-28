@@ -1,6 +1,7 @@
 package br.com.schifers.provas.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -22,33 +23,37 @@ import br.com.schifers.provas.util.EncoderUtil;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class PersonService {
 
-    @Inject
-    private PersonDAO personDao;
+	@Inject
+	private PersonDAO personDao;
 
-    @Inject
-    private RoleDAO roleDao;
+	@Inject
+	private RoleDAO roleDao;
 
-    @Inject
-    private PersonRoleDAO personRoleDao;
+	@Inject
+	private PersonRoleDAO personRoleDao;
 
-    @Inject
-    private EncoderUtil encoder;
+	@Inject
+	private EncoderUtil encoder;
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
-    public Person insert(SignupDTO dto) throws NoSuchAlgorithmException {
-        Person person = new Person();
-        person.setUsername(dto.getUsername());
-        person.setPassword(encoder.encode(dto.getPassword()));
-        person = personDao.insert(person);
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public Person insert(SignupDTO dto) throws NoSuchAlgorithmException {
+		Person person = new Person();
+		person.setUsername(dto.getUsername());
+		person.setPassword(encoder.encode(dto.getPassword()));
+		person = personDao.insert(person);
 
-        Role role = roleDao.findByName("ROLE_USER");
+		Role role = roleDao.findByName("ROLE_USER");
 
-        PersonRole personRole = new PersonRole();
-        personRole.setPerson(person);
-        personRole.setRole(role);
-        personRole = personRoleDao.insert(personRole);
+		PersonRole personRole = new PersonRole();
+		personRole.setPerson(person);
+		personRole.setRole(role);
+		personRole = personRoleDao.insert(personRole);
 
-        return person;
-    }
+		return person;
+	}
+
+	public List<Person> findAll() {
+		return personDao.findAll();
+	}
 
 }
