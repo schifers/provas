@@ -33,6 +33,7 @@ CREATE TABLE menu_item (
 	name VARCHAR(100) NOT NULL,
 	action VARCHAR(100),
 	url VARCHAR(100),
+	icon VARCHAR(100),
 	menu_type_id INTEGER NOT NULL,
 	menu_item_id INTEGER
 );

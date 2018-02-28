@@ -14,95 +14,106 @@ import javax.persistence.Table;
 @Table(name = "menu_item", schema = "provas")
 public class MenuItem {
 
-    @Id
-    @Column
-    private Long id;
+	@Id
+	@Column
+	private Long id;
 
-    @Column
-    private String name;
+	@Column
+	private String name;
 
-    @Column
-    private String action;
+	@Column
+	private String action;
 
-    @Column
-    private String url;
+	@Column
+	private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_type_id", referencedColumnName = "id")
-    private MenuType menuType;
+	@Column
+	private String icon;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_item_id", referencedColumnName = "id")
-    private MenuItem parent;
+	@ManyToOne
+	@JoinColumn(name = "menu_type_id", referencedColumnName = "id")
+	private MenuType menuType;
 
-    @OneToMany(mappedBy = "menuItem")
-    private List<MenuMenuItem> menuMenuItems;
+	@ManyToOne
+	@JoinColumn(name = "menu_item_id", referencedColumnName = "id")
+	private MenuItem parent;
 
-    @OneToMany(mappedBy = "menuItem")
-    private List<RoleMenuItem> roleMenuItems;
+	@OneToMany(mappedBy = "menuItem")
+	private List<MenuMenuItem> menuMenuItems;
 
-    public Long getId() {
-        return id;
-    }
+	@OneToMany(mappedBy = "menuItem")
+	private List<RoleMenuItem> roleMenuItems;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getAction() {
-        return action;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setAction(String action) {
-        this.action = action;
-    }
+	public String getAction() {
+		return action;
+	}
 
-    public MenuType getMenuType() {
-        return menuType;
-    }
+	public void setAction(String action) {
+		this.action = action;
+	}
 
-    public void setMenuType(MenuType menuType) {
-        this.menuType = menuType;
-    }
+	public MenuType getMenuType() {
+		return menuType;
+	}
 
-    public MenuItem getParent() {
-        return parent;
-    }
+	public void setMenuType(MenuType menuType) {
+		this.menuType = menuType;
+	}
 
-    public void setParent(MenuItem parent) {
-        this.parent = parent;
-    }
+	public MenuItem getParent() {
+		return parent;
+	}
 
-    public List<MenuMenuItem> getMenuMenuItems() {
-        return menuMenuItems;
-    }
+	public void setParent(MenuItem parent) {
+		this.parent = parent;
+	}
 
-    public void setMenuMenuItems(List<MenuMenuItem> menuMenuItems) {
-        this.menuMenuItems = menuMenuItems;
-    }
+	public List<MenuMenuItem> getMenuMenuItems() {
+		return menuMenuItems;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public void setMenuMenuItems(List<MenuMenuItem> menuMenuItems) {
+		this.menuMenuItems = menuMenuItems;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public List<RoleMenuItem> getRoleMenuItems() {
-        return roleMenuItems;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public void setRoleMenuItems(List<RoleMenuItem> roleMenuItems) {
-        this.roleMenuItems = roleMenuItems;
-    }
+	public List<RoleMenuItem> getRoleMenuItems() {
+		return roleMenuItems;
+	}
+
+	public void setRoleMenuItems(List<RoleMenuItem> roleMenuItems) {
+		this.roleMenuItems = roleMenuItems;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
 }

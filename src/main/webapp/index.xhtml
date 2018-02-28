@@ -1,34 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 
-	xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:h="http://java.sun.com/jsf/html" 
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/template.xhtml">
 
-<h:head>
-	<title>Provas</title>
-</h:head>
-<h:body>
-	<h:form>
-		<ui:include src="/menu.xhtml"/>
-		<p:panel id="panel" header="Login">
-			<p:messages id="messages" />
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:outputLabel for="username" value="Usuário:" />
-				<p:inputText id="username" value="#{loginBean.username}" disabled="#{loginBean.authenticated}"/>
-				
-				<p:outputLabel for="password" value="Senha:" />
-				<p:password id="password" value="#{loginBean.password}" disabled="#{loginBean.authenticated}"/>
-			</h:panelGrid>
-			<br />
-			<p:commandButton value="Entrar" action="#{loginBean.login}" rendered="#{!loginBean.authenticated}" update="@all"/>
-			<p:commandButton value="Limpar" action="#{loginBean.reset}" rendered="#{!loginBean.authenticated}" update="panel"/>
-			<p:commandButton value="Sair" action="#{loginBean.logout}" rendered="#{loginBean.authenticated}" update="@all"/>
-			<p:button value="Criar conta" href="signup" />
-		</p:panel>
-	</h:form>
-</h:body>
+    <ui:define name="head-end">
+        <ui:param name="renderBreadCrumb" value="false"/>
+    </ui:define>
 
-</html>
+    <ui:define name="title">
+        <h2 class="align-center">
+            Bem vindo ao Provas!
+        </h2>
+    </ui:define>
+
+</ui:composition>

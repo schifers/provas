@@ -7,9 +7,9 @@ INSERT INTO provas.person (username, password) VALUES ('admin', 'jGl25bVBBBW96Qi
 INSERT INTO provas.menu_type (name) VALUES ('ITEM');
 INSERT INTO provas.menu_type (name) VALUES ('LIST');
 
-INSERT INTO provas.menu_item (name, action, url, menu_type_id, menu_item_id) VALUES ('Início', NULL, '/', 1, NULL);
-INSERT INTO provas.menu_item (name, action, url, menu_type_id, menu_item_id) VALUES ('Perfil', NULL, '/user/dashboard', 1, NULL);
-INSERT INTO provas.menu_item (name, action, url, menu_type_id, menu_item_id) VALUES ('Administração', NULL, '/admin/dashboard', 1, NULL);
+INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Início', NULL, '/', 'fa fa-home', 1, NULL);
+INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Perfil', NULL, '/user/dashboard', 'fa fa-user', 1, NULL);
+INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Administração', NULL, '/admin/dashboard', 'fa fa-wrench', 1, NULL);
 
 INSERT INTO provas.menu_menu_item (ordering, menu_id, menu_item_id) VALUES (1, 1, 1);
 INSERT INTO provas.menu_menu_item (ordering, menu_id, menu_item_id) VALUES (2, 1, 2);

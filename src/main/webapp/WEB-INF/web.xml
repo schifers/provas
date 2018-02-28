@@ -12,6 +12,10 @@
 	    <param-name>primefaces.THEME</param-name>
 	    <param-value>admin</param-value>
 	</context-param>
+	<context-param>
+	    <param-name>primefaces.FONT_AWESOME</param-name>
+	    <param-value>true</param-value>
+	</context-param>
 	<display-name>provas</display-name>
 	<servlet>
 		<servlet-name>Jersey</servlet-name>
@@ -50,6 +54,10 @@
             30
         </session-timeout>
 	</session-config>
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
 
     <login-config>
         <auth-method>FORM</auth-method>

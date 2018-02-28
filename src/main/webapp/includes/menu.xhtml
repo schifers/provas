@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+     <ul class="sidebar-menu">
+     
+     	<ui:repeat var="item" value="#{menuBean.menuPrincipal}">
+	        <li>
+	            <p:link href="#{item.url}">
+	            	<i class="#{item.icon}"></i>
+	                <span>#{item.name}</span>
+	            </p:link>
+	        </li>
+		</ui:repeat>        
+    </ul>
+
+</ui:composition>
