@@ -7,7 +7,7 @@ INSERT INTO provas.person (username, password) VALUES ('admin', 'jGl25bVBBBW96Qi
 INSERT INTO provas.menu_type (name) VALUES ('ITEM');
 INSERT INTO provas.menu_type (name) VALUES ('LIST');
 
-INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Início', NULL, '/', 'fa fa-home', 1, NULL);
+INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Início', NULL, '/user/dashboard', 'fa fa-home', 1, NULL);
 INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Perfil', NULL, '/user/dashboard', 'fa fa-user', 1, NULL);
 INSERT INTO provas.menu_item (name, action, url, icon, menu_type_id, menu_item_id) VALUES ('Administração', NULL, '/admin/dashboard', 'fa fa-wrench', 1, NULL);
 
