@@ -61,7 +61,8 @@
                 </h:form>
 
                 <a href="#">Esqueci minha senha</a><br/>
-                <a href="#" class="text-center">Novo cadastro</a>
+                <a href="#" class="text-center">Novo cadastro</a><br/>
+				<p:link href="/user/dashboard" rendered="#{loginBean.authenticated}">Entrar pois já estou autenticado</p:link>
 
             </div>
             <!-- /.login-box-body -->
