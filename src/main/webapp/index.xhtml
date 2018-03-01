@@ -35,33 +35,33 @@
             <!-- /.login-logo -->
             <div class="box login-box-body">
                 <h:form>
-                    <p class="login-box-msg">Sign in to start your session</p>
+                    <p class="login-box-msg">Entre com usuário e senha</p>
                     <p:messages closable="true"/>
 
                     <div class="form-group has-feedback">
-                        <p:inputText value="#{loginBean.username}" styleClass="form-control" placeholder="Username"
+                        <p:inputText value="#{loginBean.username}" styleClass="form-control" placeholder="Usuário"
                                      required="true"
-                                     requiredMessage="Username is required."
+                                     requiredMessage="Usuário é obrigatório."
                                      disabled="#{loginBean.authenticated}" />
                         <i class="fa fa-envelope form-control-feedback"></i>
                     </div>
                     <div class="form-group has-feedback">
                         <p:inputText value="#{loginBean.password}" type="password" styleClass="form-control"
-                                     placeholder="Just type any value" required="true"
-                                     requiredMessage="Password is required."
+                                     placeholder="Senha" required="true"
+                                     requiredMessage="Senha é obrigatória."
                                      disabled="#{loginBean.authenticated}" />
                        <i class="fa fa-lock form-control-feedback" ></i>
                     </div>
                     <div class="row">
 	                    <div class="col-xs-12">
                             <p:commandButton styleClass="btn btn-success btn-block" action="#{loginBean.login}" onclick="showBar()" oncomplete="if(args.validationFailed){hideBar()}"
-                                             value="Sign In" update="@form" disabled="#{loginBean.authenticated}"/>
+                                             value="Entrar" update="@form" disabled="#{loginBean.authenticated}"/>
 	                    </div>
                     </div>
                 </h:form>
 
-                <a href="#">I forgot my password</a><br/>
-                <a href="#" class="text-center">Register a new membership</a>
+                <a href="#">Esqueci minha senha</a><br/>
+                <a href="#" class="text-center">Novo cadastro</a>
 
             </div>
             <!-- /.login-box-body -->

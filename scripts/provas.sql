@@ -59,3 +59,9 @@ CREATE TABLE role_menu_item (
 
 ALTER TABLE role_menu_item ADD CONSTRAINT role_menu_item_role_fk FOREIGN KEY (role_id) REFERENCES role(id);
 ALTER TABLE role_menu_item ADD CONSTRAINT role_menu_item_menu_item_fk FOREIGN KEY (menu_item_id) REFERENCES menu_item(id);
+
+CREATE TABLE exam (
+	id INTEGER AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	exam_date TIMESTAMP
+);
