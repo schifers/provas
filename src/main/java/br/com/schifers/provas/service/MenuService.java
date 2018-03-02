@@ -86,4 +86,16 @@ public class MenuService {
 		return dto;
 	}
 
+	public Menu insert(Menu menu) {
+		return menuDao.insert(menu);
+	}
+
+	public Menu update(Menu menu) {
+		return menuDao.update(menu);
+	}
+
+	public void delete(Menu menu) {
+		menuDao.delete(menu);
+	}
+
 }
