@@ -67,6 +67,7 @@ public class MenuService {
 			menuItemDTO.setParentId(menuItem.getParent() == null ? null : menuItem.getParent().getId());
 			menuItemDTO.setType(menuItem.getMenuType().getName());
 			menuItemDTO.setOrder(menuMenuItem.getOrdering());
+			menuItemDTO.setIcon(menuItem.getIcon());
 			if (menuItem.getParent() == null) {
 				dto.getRoots().add(menuItemDTO);
 			} else {

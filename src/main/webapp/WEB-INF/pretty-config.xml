@@ -25,7 +25,12 @@
 
 	<url-mapping id="admin-dashboard">
 		<pattern value="/admin/dashboard" />
-		<view-id value="/admin/menu/menu_read.xhtml" />
+		<view-id value="/admin/dashboard.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="admin-menu">
+		<pattern value="/admin/menu" />
+		<view-id value="/admin/menu/menu-list.xhtml" />
 	</url-mapping>
 
 </pretty-config>

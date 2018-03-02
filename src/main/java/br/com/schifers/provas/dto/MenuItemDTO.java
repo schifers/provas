@@ -2,104 +2,114 @@ package br.com.schifers.provas.dto;
 
 public class MenuItemDTO {
 
-    private Long id;
+	private Long id;
 
-    private String name;
+	private String name;
 
-    private String action;
+	private String action;
 
-    private String update;
+	private String update;
 
-    private String url;
+	private String url;
 
-    private String outcome;
+	private String outcome;
 
-    private String type;
+	private String type;
 
-    private Long parentId;
+	private Long parentId;
 
-    private Integer order;
+	private Integer order;
 
-    private Integer level;
+	private Integer level;
 
-    public Long getId() {
-        return id;
-    }
+	private String icon;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getAction() {
-        return action;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setAction(String action) {
-        this.action = action;
-    }
+	public String getAction() {
+		return action;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setAction(String action) {
+		this.action = action;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public Long getParentId() {
-        return parentId;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
+	public Long getParentId() {
+		return parentId;
+	}
 
-    public Integer getOrder() {
-        return order;
-    }
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
 
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
+	public Integer getOrder() {
+		return order;
+	}
 
-    public Integer getLevel() {
-        return level;
-    }
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+	public Integer getLevel() {
+		return level;
+	}
 
-    public String getUrl() {
-        return url;
-    }
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+	public String getUrl() {
+		return url;
+	}
 
-    public String getUpdate() {
-        return update;
-    }
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
-    public void setUpdate(String update) {
-        this.update = update;
-    }
+	public String getUpdate() {
+		return update;
+	}
 
-    public String getOutcome() {
-        return outcome;
-    }
+	public void setUpdate(String update) {
+		this.update = update;
+	}
 
-    public void setOutcome(String outcome) {
-        this.outcome = outcome;
-    }
+	public String getOutcome() {
+		return outcome;
+	}
+
+	public void setOutcome(String outcome) {
+		this.outcome = outcome;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 
 }

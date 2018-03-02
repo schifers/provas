@@ -3,25 +3,20 @@ package br.com.schifers.provas.bean;
 import static com.github.adminfaces.template.util.Assert.has;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.com.schifers.provas.dao.MenuDAO;
-import br.com.schifers.provas.dao.MenuItemDAO;
-import br.com.schifers.provas.dao.PersonDAO;
+import br.com.schifers.provas.dto.MenuDTO;
+import br.com.schifers.provas.dto.MenuItemDTO;
 import br.com.schifers.provas.entity.Menu;
-import br.com.schifers.provas.entity.MenuItem;
-import br.com.schifers.provas.entity.Person;
 import br.com.schifers.provas.service.MenuService;
 
 @Stateless
@@ -29,35 +24,20 @@ import br.com.schifers.provas.service.MenuService;
 public class MenuBean {
 
 	@Inject
-	private MenuItemDAO menuItemDao;
-
-	@Inject
 	private MenuDAO menuDao;
 
 	@Inject
 	private MenuService menuService;
 
-	@Inject
-	private PersonDAO personDao;
-
 	private Integer id;
 
 	private Menu menu;
 
-	private Principal getPrincipal() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		return request.getUserPrincipal();
-	}
+	List<Menu> selectedMenus;
 
-	public List<MenuItem> getMenuPrincipal() {
-		Menu menu = menuDao.findByName("principal");
-
-		Principal principal = getPrincipal();
-
-		Person person = personDao.findByUsername(principal == null ? Person.GUEST : principal.getName());
-
-		return menuItemDao.findByMenuByPerson(menu.getId(), person.getId());
+	public List<MenuItemDTO> getMenuPrincipal() {
+		MenuDTO dto = menuService.buildMenu("principal");
+		return dto.buildMenusWithLevel();
 	}
 
 	public void init() {
@@ -109,6 +89,16 @@ public class MenuBean {
 		Messages.add(null, facesMessage);
 	}
 
+	public void delete() {
+		int numMenus = 0;
+		for (Menu selectedMenu : selectedMenus) {
+			numMenus++;
+			menuService.delete(selectedMenu);
+		}
+		selectedMenus.clear();
+		addDetailMessage(numMenus + " menus apagados com sucesso!", null);
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -123,6 +113,10 @@ public class MenuBean {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public List<Menu> getSelectedMenus() {
+		return selectedMenus;
 	}
 
 }
