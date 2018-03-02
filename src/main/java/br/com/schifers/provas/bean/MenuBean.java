@@ -12,11 +12,15 @@ import javax.inject.Named;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
+import org.primefaces.model.LazyDataModel;
+
+import com.github.adminfaces.template.exception.BusinessException;
 
 import br.com.schifers.provas.dao.MenuDAO;
 import br.com.schifers.provas.dto.MenuDTO;
 import br.com.schifers.provas.dto.MenuItemDTO;
 import br.com.schifers.provas.entity.Menu;
+import br.com.schifers.provas.infra.model.Filter;
 import br.com.schifers.provas.service.MenuService;
 
 @Stateless
@@ -31,9 +35,15 @@ public class MenuBean {
 
 	private Integer id;
 
+	LazyDataModel<Menu> menus;
+
 	private Menu menu;
 
 	List<Menu> selectedMenus;
+
+	List<Menu> filteredValue;
+
+	Filter<Menu> filter = new Filter<>(new Menu());
 
 	public List<MenuItemDTO> getMenuPrincipal() {
 		MenuDTO dto = menuService.buildMenu("principal");
@@ -99,6 +109,18 @@ public class MenuBean {
 		addDetailMessage(numMenus + " menus apagados com sucesso!", null);
 	}
 
+	public void findMenuById(Integer id) {
+		if (id == null) {
+			throw new BusinessException("Informe o ID para realizar a consulta");
+		}
+		selectedMenus.add(menuService.findById(id));
+	}
+
+	public List<String> completeModel(String query) {
+		List<String> result = menuService.getNames(query);
+		return result;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -117,6 +139,34 @@ public class MenuBean {
 
 	public List<Menu> getSelectedMenus() {
 		return selectedMenus;
+	}
+
+	public void setSelectedMenus(List<Menu> selectedMenus) {
+		this.selectedMenus = selectedMenus;
+	}
+
+	public List<Menu> getFilteredValue() {
+		return filteredValue;
+	}
+
+	public void setFilteredValue(List<Menu> filteredValue) {
+		this.filteredValue = filteredValue;
+	}
+
+	public LazyDataModel<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(LazyDataModel<Menu> menus) {
+		this.menus = menus;
+	}
+
+	public Filter<Menu> getFilter() {
+		return filter;
+	}
+
+	public void setFilter(Filter<Menu> filter) {
+		this.filter = filter;
 	}
 
 }

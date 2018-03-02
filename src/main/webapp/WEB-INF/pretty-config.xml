@@ -28,7 +28,7 @@
 		<view-id value="/admin/dashboard.xhtml" />
 	</url-mapping>
 
-	<url-mapping id="admin-menu">
+	<url-mapping id="admin/menu">
 		<pattern value="/admin/menu" />
 		<view-id value="/admin/menu/menu-list.xhtml" />
 	</url-mapping>

@@ -87,6 +87,11 @@ public class MenuService {
 		return dto;
 	}
 
+	public List<String> getNames(String query) {
+		// TODO: implement get names
+		return null;
+	}
+
 	public Menu insert(Menu menu) {
 		return menuDao.insert(menu);
 	}
@@ -97,6 +102,10 @@ public class MenuService {
 
 	public void delete(Menu menu) {
 		menuDao.delete(menu);
+	}
+
+	public Menu findById(Integer id) {
+		return menuDao.findById(id);
 	}
 
 }
