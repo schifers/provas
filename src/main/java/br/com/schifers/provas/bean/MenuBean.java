@@ -3,8 +3,12 @@ package br.com.schifers.provas.bean;
 import static com.github.adminfaces.template.util.Assert.has;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
@@ -13,6 +17,7 @@ import javax.inject.Named;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
 import com.github.adminfaces.template.exception.BusinessException;
 
@@ -20,12 +25,13 @@ import br.com.schifers.provas.dao.MenuDAO;
 import br.com.schifers.provas.dto.MenuDTO;
 import br.com.schifers.provas.dto.MenuItemDTO;
 import br.com.schifers.provas.entity.Menu;
-import br.com.schifers.provas.infra.model.Filter;
 import br.com.schifers.provas.service.MenuService;
 
 @Stateless
 @Named
-public class MenuBean {
+public class MenuBean implements Serializable {
+
+	private static final long serialVersionUID = -4405362522644315109L;
 
 	@Inject
 	private MenuDAO menuDao;
@@ -43,7 +49,24 @@ public class MenuBean {
 
 	List<Menu> filteredValue;
 
-	Filter<Menu> filter = new Filter<>(new Menu());
+	@PostConstruct
+	public void initDataModel() {
+		menus = new LazyDataModel<Menu>() {
+			private static final long serialVersionUID = -3224595409792139354L;
+
+			@Override
+			public List<Menu> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+					Map<String, Object> filters) {
+				Map<String, String> filterConverted = new HashMap<String, String>();
+				for (String key : filters.keySet()) {
+					filterConverted.put(key, (String) filters.get(key));
+				}
+				List<Menu> result = menuService.getResultList(first, pageSize, sortField, sortOrder, filterConverted);
+				menus.setRowCount(menuService.count(sortField, sortOrder, filterConverted));
+				return result;
+			}
+		};
+	}
 
 	public List<MenuItemDTO> getMenuPrincipal() {
 		MenuDTO dto = menuService.buildMenu("principal");
@@ -159,14 +182,6 @@ public class MenuBean {
 
 	public void setMenus(LazyDataModel<Menu> menus) {
 		this.menus = menus;
-	}
-
-	public Filter<Menu> getFilter() {
-		return filter;
-	}
-
-	public void setFilter(Filter<Menu> filter) {
-		this.filter = filter;
 	}
 
 }

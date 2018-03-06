@@ -3,6 +3,7 @@ package br.com.schifers.provas.service;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -10,6 +11,8 @@ import javax.ejb.TransactionManagementType;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+
+import org.primefaces.model.SortOrder;
 
 import br.com.schifers.provas.dao.MenuDAO;
 import br.com.schifers.provas.dao.MenuItemDAO;
@@ -85,6 +88,18 @@ public class MenuService {
 		dto.orderRoots();
 
 		return dto;
+	}
+
+	public List<Menu> getResultList(int first, int pageSize, String sortField, SortOrder sortOrder,
+			Map<String, String> filters) {
+		List<Menu> all = new ArrayList<Menu>();
+		all.addAll(menuDao.findAll(first, pageSize, sortField, sortOrder, filters));
+		return all;
+
+	}
+
+	public int count(String sortField, SortOrder sortOrder, Map<String, String> filters) {
+		return (menuDao.findAll(-1, -1, null, null, filters)).size();
 	}
 
 	public List<String> getNames(String query) {

@@ -1,7 +1,4 @@
-<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
-                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<url-mapping id="index">
 		<pattern value="/" />
@@ -23,14 +20,14 @@
 		<view-id value="/user/dashboard.xhtml" />
 	</url-mapping>
 
+	<url-mapping id="admin-menu">
+		<pattern value="/admin/menus" />
+		<view-id value="/admin/menu/menu-list.xhtml" />
+	</url-mapping>
+
 	<url-mapping id="admin-dashboard">
 		<pattern value="/admin/dashboard" />
 		<view-id value="/admin/dashboard.xhtml" />
-	</url-mapping>
-
-	<url-mapping id="admin/menu">
-		<pattern value="/admin/menu" />
-		<view-id value="/admin/menu/menu-list.xhtml" />
 	</url-mapping>
 
 </pretty-config>

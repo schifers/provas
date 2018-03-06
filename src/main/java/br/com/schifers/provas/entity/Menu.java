@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "menu", schema = "provas")
 public class Menu implements Serializable {
 
+	private static final long serialVersionUID = -4021808213567932659L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

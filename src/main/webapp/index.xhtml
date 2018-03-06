@@ -58,11 +58,12 @@
                                              value="Entrar" update="@form" disabled="#{loginBean.authenticated}"/>
 	                    </div>
                     </div>
-                </h:form>
 
-                <a href="#">Esqueci minha senha</a><br/>
-                <a href="#" class="text-center">Novo cadastro</a><br/>
-				<p:link href="/user/dashboard" rendered="#{loginBean.authenticated}">Entrar pois já estou autenticado</p:link>
+					<p:commandLink action="#{loginBean.logout}" rendered="#{loginBean.authenticated}">Sair</p:commandLink><br/>
+	                <a href="#">Esqueci minha senha</a><br/>
+	                <a href="#" class="text-center">Novo cadastro</a><br/>
+					<p:link href="/user/dashboard" rendered="#{loginBean.authenticated}">Entrar pois já estou autenticado</p:link>
+                </h:form>
 
             </div>
             <!-- /.login-box-body -->

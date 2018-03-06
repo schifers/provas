@@ -77,19 +77,10 @@
                         </f:facet>
                         <p:column selectionMode="multiple" width="5%" styleClass="align-center"/>
 
-                        <p:column headerText="Model" filterBy="#{m.name}" sortBy="#{m.name}" filterMatchMode="contains">
-                            <f:facet name="filter">
-                                <p:autoComplete value="#{menuBean.filter.entity.name}" forceSelection="true"
-                                                minQueryLength="2" queryDelay="500"
-                                                completeMethod="#{menuBean.completeModel}" maxResults="10">
-                                    <p:ajax event="itemSelect" process="@this" update="@none"
-                                            oncomplete="PF('menusTable').filter()"/>
-                                </p:autoComplete>
-                            </f:facet>
+                        <p:column headerText="Nome">
                              <p:link value="#{m.name}" outcome="menu-form.xhtml" >
                                 <f:param name="id" value="#{m.id}"/>
                             </p:link>
-
                         </p:column>
                     </p:dataTable>
                     
