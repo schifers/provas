@@ -123,4 +123,8 @@ public class MenuService {
 		return menuDao.findById(id);
 	}
 
+	public List<Menu> findAllByName(String name) {
+		return menuDao.findAllByName(name);
+	}
+
 }

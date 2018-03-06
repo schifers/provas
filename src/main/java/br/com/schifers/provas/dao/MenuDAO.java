@@ -32,6 +32,15 @@ public class MenuDAO {
 		return tq.getSingleResult();
 	}
 
+	public List<Menu> findAllByName(String name) {
+		CriteriaBuilder cb = manager.getCriteriaBuilder();
+		CriteriaQuery<Menu> query = cb.createQuery(Menu.class);
+		Root<Menu> from = query.from(Menu.class);
+		query.where(cb.like(from.get("name"), "%" + name));
+		TypedQuery<Menu> tq = manager.createQuery(query);
+		return tq.getResultList();
+	}
+
 	public Menu findById(Integer id) {
 		CriteriaBuilder cb = manager.getCriteriaBuilder();
 		CriteriaQuery<Menu> query = cb.createQuery(Menu.class);

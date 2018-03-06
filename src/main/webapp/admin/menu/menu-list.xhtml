@@ -65,11 +65,11 @@
 
 
                         <f:facet name="header">
-                            Consulte um menu pelo id: <p:inputText id="inptId" value="#{menuBean.id}"/>
+                            Nome: <p:inputText id="inptName" value="#{menuBean.filter.name}"/>
                             <p:spacer height="5"/>
                             <p:commandButton id="brFind"
                                              value="Consultar"
-                                             action="#{menuBean.consultarMenuPorId(menuBean.id)}"
+                                             action="#{menuBean.findMenuByName(menuBean.filter.name)}"
                                              process="@form"
                                              update="@form"
                                              styleClass="btn-flat bg-black"

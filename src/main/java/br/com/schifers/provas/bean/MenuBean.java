@@ -49,6 +49,8 @@ public class MenuBean implements Serializable {
 
 	List<Menu> filteredValue;
 
+	private Menu filter;
+
 	@PostConstruct
 	public void initDataModel() {
 		menus = new LazyDataModel<Menu>() {
@@ -139,6 +141,13 @@ public class MenuBean implements Serializable {
 		selectedMenus.add(menuService.findById(id));
 	}
 
+	public void findMenuByName(String name) {
+		if (name == null) {
+			throw new BusinessException("Nome é obrigatório para realizar a consulta");
+		}
+		filteredValue.addAll(menuService.findAllByName(name));
+	}
+
 	public List<String> completeModel(String query) {
 		List<String> result = menuService.getNames(query);
 		return result;
@@ -182,6 +191,14 @@ public class MenuBean implements Serializable {
 
 	public void setMenus(LazyDataModel<Menu> menus) {
 		this.menus = menus;
+	}
+
+	public Menu getFilter() {
+		return filter;
+	}
+
+	public void setFilter(Menu filter) {
+		this.filter = filter;
 	}
 
 }
