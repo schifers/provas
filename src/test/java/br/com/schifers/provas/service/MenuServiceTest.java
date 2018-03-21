@@ -14,7 +14,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import br.com.schifers.provas.builder.MenuBuilder;
 import br.com.schifers.provas.builder.MenuItemBuilder;
 import br.com.schifers.provas.builder.MenuMenuItemBuilder;
-import br.com.schifers.provas.builder.MenuTypeBuilder;
 import br.com.schifers.provas.dao.MenuDAO;
 import br.com.schifers.provas.dao.MenuItemDAO;
 import br.com.schifers.provas.dao.MenuMenuItemDAO;
@@ -23,7 +22,7 @@ import br.com.schifers.provas.dto.MenuItemDTO;
 import br.com.schifers.provas.entity.Menu;
 import br.com.schifers.provas.entity.MenuItem;
 import br.com.schifers.provas.entity.MenuMenuItem;
-import br.com.schifers.provas.entity.MenuType;
+import br.com.schifers.provas.enumerator.MenuType;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MenuServiceTest {
@@ -44,9 +43,9 @@ public class MenuServiceTest {
 	public void testBuildMenu() {
 		Menu menu = new MenuBuilder().id(1L).name("principal").build();
 
-		MenuType itemType = new MenuTypeBuilder().id(1L).name("ITEM").build();
+		MenuType itemType = MenuType.IT;
 
-		MenuType listType = new MenuTypeBuilder().id(2L).name("LIST").build();
+		MenuType listType = MenuType.LS;
 
 		MenuItem root1 = new MenuItemBuilder().id(1L).name("root1").menuType(itemType).build();
 		MenuItem root2 = new MenuItemBuilder().id(2L).name("root2").menuType(listType).build();

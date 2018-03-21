@@ -4,11 +4,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import br.com.schifers.provas.enumerator.MenuType;
 
 @Entity
 @Table(name = "menu_item", schema = "provas")
@@ -30,8 +34,8 @@ public class MenuItem {
 	@Column
 	private String icon;
 
-	@ManyToOne
-	@JoinColumn(name = "menu_type_id", referencedColumnName = "id")
+	@Column(name = "item_type")
+	@Enumerated(EnumType.STRING)
 	private MenuType menuType;
 
 	@ManyToOne
