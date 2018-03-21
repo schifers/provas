@@ -133,6 +133,10 @@ public class MenuBean implements Serializable {
 		selectedMenus.clear();
 		addDetailMessage(numMenus + " menus apagados com sucesso!", null);
 	}
+	
+	public void query() {
+		
+	}
 
 	public void findMenuById(Integer id) {
 		if (id == null) {

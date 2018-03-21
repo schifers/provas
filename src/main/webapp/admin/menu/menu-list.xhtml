@@ -10,9 +10,8 @@
     <ui:define name="head-end">
         <style type="text/css">
             .ui-datatable .ui-datatable-header {
-                text-align: right !important;
+                text-align: left !important;
             }
-
         </style>
     </ui:define>
 
@@ -48,7 +47,18 @@
                     </p:splitButton>
 
                     <p:separator/>
+
+					<p:fieldset>
+						<p:outputLabel for="name" value="Nome:"/>
+                        <p:spacer width="5"/>
+						<p:inputText id="name" value="#{menuBean.filter.name}" />
+						<br/>
+						<br/>
+						<p:commandButton value="Consultar" icon="fa fa-search" update="@form" action="#{menuBean.query}"/>
+					</p:fieldset>
                      
+                    <p:separator/>
+
                     <p:dataTable widgetVar="menusTable" var="m" value="#{menuBean.menus}" rows="5"
                                  rowKey="#{m.id}" lazy="true" paginator="true"
                                  filteredValue="#{menuBean.filteredValue}"
@@ -63,18 +73,6 @@
                         <p:ajax event="rowSelect" update="@(.ui-button, .ui-confirm-dialog)"/>
                         <p:ajax event="rowUnselect" update="@(.ui-button, .ui-confirm-dialog)"/>
 
-
-                        <f:facet name="header">
-                            Nome: <p:inputText id="inptName" value="#{menuBean.filter.name}"/>
-                            <p:spacer height="5"/>
-                            <p:commandButton id="brFind"
-                                             value="Consultar"
-                                             action="#{menuBean.findMenuByName(menuBean.filter.name)}"
-                                             process="@form"
-                                             update="@form"
-                                             styleClass="btn-flat bg-black"
-                                             partialSubmit="true"/>
-                        </f:facet>
                         <p:column selectionMode="multiple" width="5%" styleClass="align-center"/>
 
                         <p:column headerText="Nome">
